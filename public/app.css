@@ -1,0 +1,28 @@
+.list-group .worklog-day {
+    margin-top: 20px;
+}
+
+.list-group .worklog-day:first-child {
+    margin-top: 0;
+}
+
+.list-group-item .label {
+    float: right;
+    margin-right: 5px;
+}
+
+.list-group-item .label:first-child {
+    margin-right: 0;
+}
+
+.job-close-clicker {
+    color: #00aa00;
+}
+
+#job-list .job-links {
+    display: none;
+}
+
+#job-list.show-job-links .job-links {
+    display: block;
+}

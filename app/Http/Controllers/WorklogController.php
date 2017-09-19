@@ -31,8 +31,8 @@ class WorklogController extends Controller
         $worklogSuspiciousness = (isset($input['worklog-suspiciousness']) && !empty($input['worklog-suspiciousness']) ? $input['worklog-suspiciousness'] : 'all');
 
 		/* Fetch finished worklogs */
-		
-		$worklogs = Worklog::with('job.project', 'job.subproject')->finished()->where('begin_at', '>=', $dateFrom . ' 00:00:00')->where('end_at', '<=', $dateTo . '23:59:59');
+
+		$worklogs = Worklog::with('job.project', 'job.subproject')->finished()->where('begin_at', '>=', $dateFrom . ' 00:00:00')->where('end_at', '<=', $dateTo . ' 23:59:59');
 
 		/* Respect desired export status */
 

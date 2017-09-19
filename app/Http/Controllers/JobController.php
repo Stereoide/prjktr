@@ -35,7 +35,7 @@ class JobController extends Controller
 		
 		/* Fetch projects, subprojects and activities */
 		
-		$projects = Project::all();
+		$projects = Project::ordered()->get();
 		$activities = Activity::ordered()->get();
 		
 		/* Show view */

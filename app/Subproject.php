@@ -32,4 +32,8 @@ class Subproject extends Model
     {
         return $this->belongsTo('App\Project');
     }
+
+    public function scopeOrdered($query) {
+        return $query->orderBy('name', 'ASC');
+    }
 }

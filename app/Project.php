@@ -29,6 +29,10 @@ class Project extends Model
 	
     public function subprojects()
     {
-        return $this->hasMany('App\Subproject');
+        return $this->hasMany('App\Subproject')->ordered();
+    }
+
+    public function scopeOrdered($query) {
+        return $query->orderBy('name', 'ASC');
     }
 }

@@ -4,21 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Subproject;
 
 class Subproject extends Model
 {
     use SoftDeletes;
-	
-   /**
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-    	'project_id',
+        'project_id',
         'np_id',
-    	'name', 
+        'name',
     ];
 
     /**
@@ -27,13 +26,23 @@ class Subproject extends Model
      * @var array
      */
     protected $hidden = [];
-	
+
+    /* Relationships */
+
     public function project()
     {
         return $this->belongsTo('App\Project');
     }
 
-    public function scopeOrdered($query) {
+    /* Scopes */
+
+    public function scopeOrdered($query)
+    {
         return $query->orderBy('name', 'ASC');
+    }
+
+    public function scopeUnassigned($query)
+    {
+        return $query->whereNull('np_id');
     }
 }

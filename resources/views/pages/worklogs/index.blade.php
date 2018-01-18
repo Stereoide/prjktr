@@ -65,12 +65,12 @@
 				</li>
 			@foreach ($day['worklogs'] as $worklog)
 				<li class="list-group-item" id="worklog-{{ $worklog->id }}">
-				@if (12 <= $worklog->hours())
+				@if ($worklog->isBlocker())
 					<span class="label label-danger">blocker</span>
-				@elseif (6 <= $worklog->hours())
+				@elseif ($worklog->isSuspicious())
 					<span class="label label-warning">verdächtig</span>
 				@endif
-				@if (empty($worklog->job->project->np_id) || empty($worklog->job->subproject->np_id))
+				@if ($worklog->isIncomplete())
 					<span class="label label-info">unvollständig</span>
 				@endif
 

@@ -2,8 +2,8 @@
 Die folgenden Aufträge haben noch keine NetProject-Verknüpfung:
 @foreach ($projects as $project)
 
-Id: {{ $project->id }}
 Name: {{ $project->name }}
+Link: {{ route('projects.edit', ['project' => $project->id]) }}
 @endforeach
 @endif
 
@@ -11,9 +11,8 @@ Name: {{ $project->name }}
 Die folgenden Teilaufträge haben noch keine NetProject-Verknüpfung:
 @foreach ($subprojects as $subproject)
 
-Id: {{ $subproject->id }}
-Name: {{ $subproject->name }}
-Auftrag: {{ $subproject->project->name }}
+Name: {{ $subproject->project->name }} / {{ $subproject->name }}
+Link: {{ route('projects.subprojects.edit', ['project' => $subproject->project->id, 'subproject' => $subproject->id]) }}
 @endforeach
 @endif
 

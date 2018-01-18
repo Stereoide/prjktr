@@ -12,8 +12,7 @@
 
     @foreach ($projects as $project)
     <p>
-        Id: {{ $project->id }}<br />
-        Name: {{ $project->name }}<br />
+        <a href="{{ route('projects.edit', ['project' => $project->id]) }}" target="_blank">{{ $project->name }}</a><br />
     </p>
     @endforeach
 @endif
@@ -23,9 +22,7 @@
 
     @foreach ($subprojects as $subproject)
     <p>
-        Id: {{ $subproject->id }}<br />
-        Name: {{ $subproject->name }}<br />
-        Auftrag: {{ $subproject->project->name }}<br />
+        Name: {{ $subproject->project->name }} / <a href="{{ route('projects.subprojects.edit', ['project' => $subproject->project->id, 'subproject' => $subproject->id]) }}" target="_blank">{{ $subproject->name }}</a><br />
     </p>
     @endforeach
 @endif

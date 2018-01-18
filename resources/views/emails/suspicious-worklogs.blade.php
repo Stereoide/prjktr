@@ -7,26 +7,26 @@
     <title>Prjktr: Nicht abgeschlossene Arbeiten</title>
 </head>
 <body>
-@if (!$suspiciousWorklogs->isEmpty())
-    <h1>Die folgenden noch nicht exportierten Arbeiten sind verdächtig (> 6 Stunden)</h1>
-
-    @foreach ($suspiciousWorklogs as $worklog)
-    <p>
-        {{ $worklog->job->project->name }} / {{ $worklog->job->subproject->name }} @if (!empty($worklog->notes)) / {{ $worklog->notes }} @endif <br />
-        ({{ $worklog->begin_at->format('d.m.Y H:i') }} - {{ $worklog->end_at->format('d.m.Y H:i') }} = {{ $worklog->hours }}h)<br />
-    </p>
-    @endforeach
-@endif
-    <br />
-
 @if (!$blockingWorklogs->isEmpty())
     <h1>Die folgenden noch nicht exportierten Arbeiten sind Blocker (> 12 Stunden)</h1>
 
     @foreach ($blockingWorklogs as $worklog)
-    <p>
-        {{ $worklog->job->project->name }} / {{ $worklog->job->subproject->name }} @if (!empty($worklog->notes)) / {{ $worklog->notes }} @endif <br />
-        ({{ $worklog->begin_at->format('d.m.Y H:i') }} - {{ $worklog->end_at->format('d.m.Y H:i') }} = {{ $worklog->hours }}h)<br />
-    </p>
+        <p>
+            {{ $worklog->job->project->name }} / {{ $worklog->job->subproject->name }} @if (!empty($worklog->notes)) / {{ $worklog->notes }} @endif <br />
+            ({{ $worklog->begin_at->format('d.m.Y H:i') }} - {{ $worklog->end_at->format('d.m.Y H:i') }} = {{ $worklog->hours }}h)<br />
+        </p>
+    @endforeach
+@endif
+    <br />
+
+@if (!$suspiciousWorklogs->isEmpty())
+    <h1>Die folgenden noch nicht exportierten Arbeiten sind verdächtig (> 6 Stunden)</h1>
+
+    @foreach ($suspiciousWorklogs as $worklog)
+        <p>
+            {{ $worklog->job->project->name }} / {{ $worklog->job->subproject->name }} @if (!empty($worklog->notes)) / {{ $worklog->notes }} @endif <br />
+            ({{ $worklog->begin_at->format('d.m.Y H:i') }} - {{ $worklog->end_at->format('d.m.Y H:i') }} = {{ $worklog->hours }}h)<br />
+        </p>
     @endforeach
 @endif
     <br />

@@ -103,6 +103,13 @@ class Worklog extends Model
         });
     }
 
+    /* Accessors */
+
+    public function getHoursAttribute()
+    {
+        return $this->hours();
+    }
+
     /* Methods */
 
     public function finish()

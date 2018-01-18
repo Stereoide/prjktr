@@ -16,9 +16,14 @@ class WorklogsSeeder extends Seeder
         /* Insert worklogs */
 
         $worklogs = [
+            [1, 7, 'Masken-Details von Frau Wowerath auf Machbarkeit prüfen', '2016-04-29 07:17:00', '2016-04-29 08:02:00', '2016-04-29 07:18:19', '2016-06-30 11:27:44', NULL, 1, '2016-06-30 11:27:44'],
+            [2, 7, 'Masken-Details von Frau Wowerath auf Machbarkeit prüfen', '2016-04-29 07:17:00', '2016-04-29 08:02:00', '2016-04-29 07:18:19', '2016-06-30 11:27:44', NULL, 1, '2016-06-30 11:27:44'],
+            [3, 7, 'Masken-Details von Frau Wowerath auf Machbarkeit prüfen', '2016-04-29 07:17:00', '2016-04-29 08:02:00', '2016-04-29 07:18:19', '2016-06-30 11:27:44', NULL, 1, '2016-06-30 11:27:44'],
+            [4, 7, 'Masken-Details von Frau Wowerath auf Machbarkeit prüfen', '2016-04-29 07:17:00', '2016-04-29 08:02:00', '2016-04-29 07:18:19', '2016-06-30 11:27:44', NULL, 1, '2016-06-30 11:27:44'],
             [5, 7, 'Masken-Details von Frau Wowerath auf Machbarkeit prüfen', '2016-04-29 07:17:00', '2016-04-29 08:02:00', '2016-04-29 07:18:19', '2016-06-30 11:27:44', NULL, 1, '2016-06-30 11:27:44'],
             [6, 8, 'neue Anforderungen prüfen', '2016-04-29 08:02:00', '2016-04-29 08:17:00', '2016-04-29 08:02:49', '2016-06-30 11:27:44', NULL, 1, '2016-06-30 11:27:44'],
             [7, 8, 'CSV-Exporter erweitern', '2016-04-29 08:43:40', '2016-04-29 10:27:53', '2016-04-29 08:43:40', '2016-06-30 11:27:45', NULL, 1, '2016-06-30 11:27:45'],
+            [8, 8, 'CSV-Exporter erweitern', '2016-04-29 08:43:40', '2016-04-29 10:27:53', '2016-04-29 08:43:40', '2016-06-30 11:27:45', NULL, 1, '2016-06-30 11:27:45'],
             [9, 9, 'Mailtemplates für Gloria Klümpel [KF Live] aktualisieren', '2016-04-29 11:11:17', '2016-04-29 12:11:17', '2016-04-29 11:11:17', '2016-06-30 11:27:45', NULL, 1, '2016-06-30 11:27:45'],
             [10, 3, 'Layout', '2016-04-29 12:14:11', '2016-04-29 14:59:11', '2016-04-29 12:14:11', '2016-06-30 11:27:45', NULL, 1, '2016-06-30 11:27:45'],
             [11, 10, 'Supportfrage zum Thema Reminder-Mail [wurden Remindermails verschickt?]', '2016-04-29 15:01:45', '2016-04-29 15:16:45', '2016-04-29 15:01:45', '2016-06-30 11:27:45', NULL, 1, '2016-06-30 11:27:45'],
@@ -1030,6 +1035,8 @@ class WorklogsSeeder extends Seeder
             [1017, 205, 'VPN-Besprechung mit Daniel Stöck', '2017-07-28 11:18:00', '2017-07-31 06:18:00', '2017-07-28 11:18:44', '2017-07-31 06:17:57', NULL, 0, NULL],
             [1018, 151, 'Videos in mehreren Auflösungen zum Download anbieten', '2017-07-31 06:18:00', '2017-08-01 06:18:00', '2017-07-31 06:18:20', '2017-08-01 06:15:14', NULL, 0, NULL],
             [1019, 210, '0', '2017-08-01 06:29:00', '2017-08-02 05:59:00', '2017-08-01 06:29:22', '2017-08-02 05:47:41', NULL, 0, NULL],
+            [1020, 210, '0', '2017-08-01 06:29:00', '2017-08-02 05:59:00', '2017-08-01 06:29:22', '2017-08-02 05:47:41', NULL, 0, NULL],
+            [1021, 210, '0', '2017-08-01 06:29:00', '2017-08-02 05:59:00', '2017-08-01 06:29:22', '2017-08-02 05:47:41', NULL, 0, NULL],
             [1022, 211, '0', '2017-08-01 08:00:00', '2017-08-01 13:00:00', '2017-08-02 05:49:58', '2017-08-02 05:49:58', NULL, 0, NULL],
             [1023, 211, '0', '2017-08-02 05:50:00', '2017-08-02 06:50:00', '2017-08-02 05:50:06', '2017-08-02 06:47:50', NULL, 0, NULL],
             [1024, 212, 'RGB-Farbraum bei Preview von CMYK-PDFs', '2017-08-02 06:48:00', '2017-08-02 09:03:00', '2017-08-02 06:48:42', '2017-08-02 09:01:49', NULL, 0, NULL],
@@ -1244,7 +1251,6 @@ class WorklogsSeeder extends Seeder
             list($id, $job_id, $notes, $begin_at, $end_at, $created_at, $updated_at, $deleted_at, $is_exported, $exported_at) = $worklog;
 
             $worklog = new Worklog;
-            $worklog->id = $id;
             $worklog->job_id = $job_id;
             $worklog->notes = $notes;
             $worklog->begin_at = $begin_at;
@@ -1257,9 +1263,5 @@ class WorklogsSeeder extends Seeder
             $worklog->timestamps = false;
             $worklog->save();
         }
-
-        /* Set new auto-increment value */
-
-        DB::statement('ALTER TABLE worklogs AUTO_INCREMENT = ' . (count($worklogs) + 1) . ';');
     }
 }

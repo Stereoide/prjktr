@@ -32,7 +32,6 @@ class ActivitiesSeeder extends Seeder
 		    list($id, $np_id, $name, $created_at, $updated_at, $deleted_at) = $activity;
 
 			$activity = new Activity;
-			$activity->id = $id;
 			$activity->np_id = $np_id;
 			$activity->name = $name;
 			$activity->created_at = $created_at;
@@ -41,9 +40,5 @@ class ActivitiesSeeder extends Seeder
 			$activity->timestamps = false;
 			$activity->save();
 		}
-
-		/* Set new auto-increment value */
-
-        DB::statement('ALTER TABLE activities AUTO_INCREMENT = ' . (count($activities) + 1) . ';');
 	}
 }

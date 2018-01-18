@@ -111,7 +111,6 @@ class ProjectsSeeder extends Seeder
             list($id, $np_id, $name, $created_at, $updated_at, $deleted_at) = $project;
 
             $project = new Project;
-            $project->id = $id;
             $project->np_id = $np_id;
             $project->name = $name;
             $project->created_at = $created_at;
@@ -120,9 +119,5 @@ class ProjectsSeeder extends Seeder
             $project->timestamps = false;
             $project->save();
         }
-
-        /* Set new auto-increment value */
-
-        DB::statement('ALTER TABLE projects AUTO_INCREMENT = ' . (count($projects) + 1) . ';');
     }
 }

@@ -288,7 +288,6 @@ class SubprojectsSeeder extends Seeder
             list($id, $project_id, $np_id, $name, $created_at, $updated_at, $deleted_at) = $subproject;
 
             $subproject = new Subproject;
-            $subproject->id = $id;
             $subproject->project_id = $project_id;
             $subproject->np_id = $np_id;
             $subproject->name = $name;
@@ -298,9 +297,5 @@ class SubprojectsSeeder extends Seeder
             $subproject->timestamps = false;
             $subproject->save();
         }
-
-        /* Set new auto-increment value */
-
-        DB::statement('ALTER TABLE subprojects AUTO_INCREMENT = ' . (count($subprojects) + 1) . ';');
     }
 }

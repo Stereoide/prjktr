@@ -46,6 +46,7 @@ class JobsSeeder extends Seeder
             [28, 5, 28, 5, '', 'closed', '2016-06-13 11:49:47', '2017-04-19 10:04:38', NULL],
             [29, 14, 29, 5, '', 'closed', '2016-06-13 19:44:03', '2017-04-19 10:03:21', NULL],
             [30, 12, 30, 5, '', 'closed', '2016-06-15 21:06:45', '2017-04-19 10:04:28', NULL],
+            [31, 12, 30, 5, '', 'closed', '2016-06-15 21:06:45', '2017-04-19 10:04:28', NULL],
             [32, 16, 32, 5, '', 'closed', '2016-06-16 20:59:18', '2017-04-19 10:00:08', NULL],
             [33, 6, 33, 5, '', 'closed', '2016-06-20 06:37:38', '2017-04-19 10:04:45', NULL],
             [34, 15, 34, 5, '', 'closed', '2016-06-22 08:47:16', '2017-04-19 10:01:21', NULL],
@@ -287,7 +288,6 @@ class JobsSeeder extends Seeder
             list($id, $project_id, $subproject_id, $activity_id, $description, $status, $created_at, $updated_at, $deleted_at) = $job;
 
             $job = new Job;
-            $job->id = $id;
             $job->project_id = $project_id;
             $job->subproject_id = $subproject_id;
             $job->activity_id = $activity_id;
@@ -299,9 +299,5 @@ class JobsSeeder extends Seeder
             $job->timestamps = false;
             $job->save();
         }
-
-        /* Set new auto-increment value */
-
-        DB::statement('ALTER TABLE jobs AUTO_INCREMENT = ' . (count($jobs) + 1) . ';');
     }
 }

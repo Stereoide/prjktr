@@ -29,5 +29,8 @@
     </p>
     @endforeach
 @endif
+    <br />
+
+    <a href="{{ route('index') }}" target="_blank">Prjktr aufrufen</a><br />
 </body>
 </html>

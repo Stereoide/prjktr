@@ -16,3 +16,5 @@ Name: {{ $subproject->name }}
 Auftrag: {{ $subproject->project->name }}
 @endforeach
 @endif
+
+Prjktr aufrufen: {{ route('index') }}

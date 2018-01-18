@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Job;
 
 class JobsSeeder extends Seeder
@@ -12,6 +13,8 @@ class JobsSeeder extends Seeder
      */
     public function run()
     {
+        /* Insert jobs */
+
         $jobs = [
             [1, 1, 1, 5, '', 'open', '2016-04-28 13:21:22', '2016-04-28 13:21:22', NULL],
             [2, 1, 2, 5, '', 'open', '2016-04-28 14:47:30', '2016-04-28 14:47:30', NULL],
@@ -296,5 +299,9 @@ class JobsSeeder extends Seeder
             $job->timestamps = false;
             $job->save();
         }
+
+        /* Set new auto-increment value */
+
+        DB::statement('ALTER TABLE jobs AUTO_INCREMENT = ' . (count($jobs) + 1) . ';');
     }
 }

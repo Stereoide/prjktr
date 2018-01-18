@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Project;
 
 class ProjectsSeeder extends Seeder
@@ -12,6 +13,8 @@ class ProjectsSeeder extends Seeder
      */
     public function run()
     {
+        /* Insert projects */
+
         $projects = [
             [1, 7795294, 'Garpa Redesign', '2016-04-28 13:20:52', '2016-06-29 12:40:46', NULL],
             [2, 7794735, 'ABH', '2016-04-28 14:58:54', '2016-06-29 12:29:26', NULL],
@@ -117,5 +120,9 @@ class ProjectsSeeder extends Seeder
             $project->timestamps = false;
             $project->save();
         }
+
+        /* Set new auto-increment value */
+
+        DB::statement('ALTER TABLE projects AUTO_INCREMENT = ' . (count($projects) + 1) . ';');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Subproject;
 
 class SubprojectsSeeder extends Seeder
@@ -12,6 +13,8 @@ class SubprojectsSeeder extends Seeder
      */
     public function run()
     {
+        /* Insert subprojects */
+
         $subprojects = [
             [1, 1, 7866402, 'Datenblatt', '2016-04-28 13:21:22', '2016-11-02 15:22:29', NULL],
             [2, 1, NULL, 'Download-Brücke', '2016-04-28 14:47:30', '2016-04-28 14:47:30', NULL],
@@ -295,5 +298,9 @@ class SubprojectsSeeder extends Seeder
             $subproject->timestamps = false;
             $subproject->save();
         }
+
+        /* Set new auto-increment value */
+
+        DB::statement('ALTER TABLE subprojects AUTO_INCREMENT = ' . (count($subprojects) + 1) . ';');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use App\Worklog;
 
 class WorklogsSeeder extends Seeder
@@ -12,6 +13,8 @@ class WorklogsSeeder extends Seeder
      */
     public function run()
     {
+        /* Insert worklogs */
+
         $worklogs = [
             [5, 7, 'Masken-Details von Frau Wowerath auf Machbarkeit prüfen', '2016-04-29 07:17:00', '2016-04-29 08:02:00', '2016-04-29 07:18:19', '2016-06-30 11:27:44', NULL, 1, '2016-06-30 11:27:44'],
             [6, 8, 'neue Anforderungen prüfen', '2016-04-29 08:02:00', '2016-04-29 08:17:00', '2016-04-29 08:02:49', '2016-06-30 11:27:44', NULL, 1, '2016-06-30 11:27:44'],
@@ -1254,5 +1257,9 @@ class WorklogsSeeder extends Seeder
             $worklog->timestamps = false;
             $worklog->save();
         }
+
+        /* Set new auto-increment value */
+
+        DB::statement('ALTER TABLE worklogs AUTO_INCREMENT = ' . (count($worklogs) + 1) . ';');
     }
 }

@@ -31,13 +31,17 @@ class Worklog extends Model
 	 * @var array
 	 */
 	protected $hidden = [];
-	
-	protected $dates = ['created_at', 'updated_at', 'deleted_at', 'begin_at', 'end_at', 'exported_at'];
-	
+
+    protected $dates = ['created_at', 'updated_at', 'deleted_at', 'begin_at', 'end_at', 'exported_at'];
+
+	/* Relationships */
+
 	public function job()
 	{
 		return $this->belongsTo('App\Job');
 	}
+
+	/* Scopes */
 	
 	public function scopeActive($query) {
 		return $query->whereNull('end_at');
@@ -66,6 +70,8 @@ class Worklog extends Model
 	public function scopeIsNotExported($query) {
 		return $query->where('is_exported', false);
 	}
+
+	/* Methods */
 	
 	public function finish() {
 		/* Round up to the next 15-minute slot */

@@ -32,6 +32,8 @@ class Job extends Model
     
     protected $dates = ['created_at', 'updated_at', 'deleted_at', 'begin_at', 'end_at'];
 
+    /* Relationships */
+
     public function project()
     {
     	return $this->belongsTo('App\Project');
@@ -51,6 +53,8 @@ class Job extends Model
     {
         return $this->hasMany('App\Worklog');
     }
+
+    /* Scopes */
     
     public function scopeOpen($query) {
     	return $query->where('jobs.status', 'open');

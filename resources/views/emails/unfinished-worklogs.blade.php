@@ -11,7 +11,10 @@
 
 @foreach ($worklogs as $worklog)
     {{ $worklog->job->project->name }} / {{ $worklog->job->subproject->name }} @if (!empty($worklog->notes)) / {{ $worklog->notes }} @endif <br />
-    (seit {{ $worklog->begin_at->format('d.m.Y H:i') }} Uhr)
+    (seit {{ $worklog->begin_at->format('d.m.Y H:i') }} Uhr)<br />
 @endforeach
+    <br />
+
+    <a href="{{ route('index') }}" target="_blank">Prjktr aufrufen</a><br />
 </body>
 </html>

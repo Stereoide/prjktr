@@ -12,7 +12,7 @@
 
     @foreach ($blockingWorklogs as $worklog)
         <p>
-            {{ $worklog->job->project->name }} / {{ $worklog->job->subproject->name }} @if (!empty($worklog->notes)) / {{ $worklog->notes }} @endif <br />
+            <a href="{{ route('worklogs.edit', ['worklog' => $worklog->id]) }}" target="_blank">{{ $worklog->job->project->name }} / {{ $worklog->job->subproject->name }} @if (!empty($worklog->notes)) / {{ $worklog->notes }} @endif </a><br />
             ({{ $worklog->begin_at->format('d.m.Y H:i') }} - {{ $worklog->end_at->format('d.m.Y H:i') }} = {{ $worklog->hours }}h)<br />
         </p>
     @endforeach

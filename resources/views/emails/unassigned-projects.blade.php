@@ -22,7 +22,7 @@
 
     @foreach ($subprojects as $subproject)
     <p>
-        {{ $subproject->project->name }} / <a href="{{ route('projects.subprojects.edit', ['project' => $subproject->project->id, 'subproject' => $subproject->id]) }}" target="_blank">{{ $subproject->name }}</a><br />
+        {{ $subproject->project->name }} @if (!empty($subproject->project->np_id)) (<a href="https://netproject.otterbach.de/netproject/protected/pl_projekte/details.php?pid={{ $subproject->project->np_id }}" target="_blank">np</a>) @endif / <a href="{{ route('projects.subprojects.edit', ['project' => $subproject->project->id, 'subproject' => $subproject->id]) }}" target="_blank">{{ $subproject->name }}</a><br />
     </p>
     @endforeach
 @endif

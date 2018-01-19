@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ea4456209c89a8b8f97854ff351cf71d",
+    "content-hash": "716c037042146321ad4808e5c922bc86",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -318,6 +318,61 @@
                 "trusted proxy"
             ],
             "time": "2017-06-15T17:19:42+00:00"
+        },
+        {
+            "name": "hmazter/laravel-schedule-list",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hmazter/laravel-schedule-list.git",
+                "reference": "8f68139ab3b664f36c3eddf1ff710bbaecdd889c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hmazter/laravel-schedule-list/zipball/8f68139ab3b664f36c3eddf1ff710bbaecdd889c",
+                "reference": "8f68139ab3b664f36c3eddf1ff710bbaecdd889c",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": ">=5.0 <5.6",
+                "illuminate/support": ">=5.0 <5.6",
+                "mtdowling/cron-expression": "^1.2",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.3",
+                "phpunit/phpunit": "^5.0|^6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Hmazter\\LaravelScheduleList\\ScheduleListServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hmazter\\LaravelScheduleList\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kristoffer Högberg",
+                    "email": "krihog@gmail.com"
+                }
+            ],
+            "description": "Laravel package to add command to list all scheduled artisan commands",
+            "keywords": [
+                "artisan",
+                "console",
+                "laravel5"
+            ],
+            "time": "2017-08-14T12:25:17+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->command(FindUnassignedProjects::class)->timezone('Europe/Berlin')->weekdays()->dailyAt('16:30');
+        $schedule->command(FindUnassignedProjects::class)->timezone('Europe/Berlin')->weekdays()->everyThirtyMinutes()->between('08:00', '17:00');
 
         $schedule->command(FindUnfinishedWorklogs::class)->timezone('Europe/Berlin')->weekdays()->dailyAt('16:40');
         $schedule->command(FindSuspiciousWorklogs::class)->timezone('Europe/Berlin')->weekdays()->dailyAt('16:50');

@@ -13,7 +13,7 @@
 
 Route::get('/', 'FrontendController@index')->name('index');
 
-Route::get('worklogs/start/{id}/{date}/{timeBegin}/{timeEnd}/{notes}', 'WorklogController@start')->name('worklogs.start');
+Route::get('worklogs/start', 'WorklogController@start')->name('worklogs.start');
 Route::get('worklogs/finish', 'WorklogController@finish')->name('worklogs.finish');
 Route::get('worklogs/export', 'WorklogController@export')->name('worklogs.export');
 Route::resource('worklogs', 'WorklogController');

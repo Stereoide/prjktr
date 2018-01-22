@@ -273,8 +273,14 @@ class WorklogController extends Controller
 		
 		return redirect(route('index'));
 	}
-	
-	public function start(Request $request, $jobId, $date = '', $timeBegin = '', $timeEnd = '', $notes = '') {
+
+	public function start(Request $request) {
+	    $jobId = $request->jobId;
+	    $date = $request->date;
+	    $timeBegin = $request->timeBegin;
+	    $timeEnd = $request->timeEnd;
+	    $notes = $request->notes;
+
         /* Fetch and finish a currently unfinished worklog first */
 		
 		$worklog = Worklog::active()->first();

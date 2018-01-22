@@ -42,7 +42,12 @@
                     notes = "0";
                 }
 
-                var url = "{{ url('worklogs/start') }}/" + jobId + "/" +  encodeURIComponent(date) + "/" + encodeURIComponent(timeBegin) + "/" + encodeURIComponent(timeEnd) + "/" + encodeURIComponent(notes);
+                var url = "{{ url('worklogs/start') }}";
+                url += "?jobId=" + jobId;
+                url += "&date=" +  encodeURIComponent(date);
+                url += "&timeBegin=" + encodeURIComponent(timeBegin);
+                url += "&timeEnd=" + encodeURIComponent(timeEnd);
+                url += "&notes=" + encodeURIComponent(notes);
                 document.location = url;
 			}
 		});

@@ -54,11 +54,13 @@ class FrontendController extends Controller
 
 		$jobs = $jobs
             ->sortBy(function($job) use ($monthNameIndices) {
-                $sortKey = $job->project->name . ' - ' . $job->subproject->name . ' - ' . $job->activity->name;
+                $subprojectName = $job->subproject->name;
 
                 foreach ($monthNameIndices as $monthName => $monthIndex) {
-                    $sortKey = str_replace(' ' . $monthNameIndices . ' ', ' month' . $monthIndex . ' ', $sortKey);
+                    $subprojectName = str_replace(' ' . $monthName . ' ', ' month' . $monthIndex . ' ', $subprojectName);
                 }
+
+                $sortKey = $job->project->name . ' - ' . $subprojectName . ' - ' . $job->activity->name;
 
                 return $sortKey;
             });

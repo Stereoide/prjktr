@@ -33,7 +33,36 @@ class FrontendController extends Controller
 		/* Fetch available jobs */
 		
 		$jobs = Job::open()->ordered()->get();
-		
+
+		/* Order jobs alphabetically while pretending month names correspond to their numeric index */
+
+        $monthNameIndices = [
+            'Januar' => '01',
+            'Februar' => '02',
+            'März' => '03',
+            'April' => '04',
+            'Mai' => '05',
+            'Juni' => '06',
+            'Juli' => '07',
+            'August' => '08',
+            'September' => '09',
+            'Oktober' => '10',
+            'November' => '11',
+            'Dezember' => '12',
+
+        ];
+
+		$jobs = $jobs
+            ->sortBy(function($job) use ($monthNameIndices) {
+                $sortKey = $job->project->name . ' - ' . $job->subproject->name . ' - ' . $job->activity->name;
+
+                foreach ($monthNameIndices as $monthName => $monthIndex) {
+                    $sortKey = str_replace(' ' . $monthNameIndices . ' ', ' month' . $monthIndex . ' ', $sortKey);
+                }
+
+                return $sortKey;
+            });
+
 		/* Show view */
 		
 		return view('pages.index')->with(compact('activeWorklog', 'worklogs', 'jobs', 'date', 'timeBegin', 'timeEnd'));

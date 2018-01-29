@@ -298,4 +298,21 @@ class WorklogController extends Controller
 		
 		return redirect(route('index'));
 	}
+
+	public function restart(Worklog $worklog)
+    {
+        /* Get parameters used last time */
+
+        $jobId = $worklog->job_id;
+        $notes = $worklog->notes;
+
+        /* Start new worklog */
+
+        $worklog = new Worklog;
+        $worklog->start($jobId, null, null, null, $notes);
+
+        /* Redirect to index page */
+
+        return redirect(route('index'));
+    }
 }

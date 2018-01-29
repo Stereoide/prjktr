@@ -16,6 +16,7 @@ Route::get('/', 'FrontendController@index')->name('index');
 Route::get('worklogs/start', 'WorklogController@start')->name('worklogs.start');
 Route::get('worklogs/finish', 'WorklogController@finish')->name('worklogs.finish');
 Route::get('worklogs/export', 'WorklogController@export')->name('worklogs.export');
+Route::get('worklogs/{worklog}/restart', 'WorklogController@restart')->name('worklogs.restart');
 Route::resource('worklogs', 'WorklogController');
 
 Route::resource('projects', 'ProjectController');

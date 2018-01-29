@@ -54,6 +54,18 @@ class Job extends Model
         return $this->hasMany('App\Worklog');
     }
 
+    /* Accessors */
+
+    public function getIsOpenAttribute()
+    {
+        return ($this->status == 'open');
+    }
+
+    public function getIsClosedAttribute()
+    {
+        return ($this->status == 'closed');
+    }
+
     /* Scopes */
     
     public function scopeOpen($query) {

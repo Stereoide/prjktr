@@ -162,7 +162,10 @@
 				@if (!empty($worklog->notes))
 					{{ $worklog->notes }}<br />
 				@endif
-					{{ $worklog->begin_at->format('H:i') }} bis {{ $worklog->end_at->format('H:i') }} ({{ $worklog->begin_at->diffForHumans($worklog->end_at, true) }})
+					{{ $worklog->begin_at->format('H:i') }} bis {{ $worklog->end_at->format('H:i') }} ({{ $worklog->begin_at->diffForHumans($worklog->end_at, true) }})<br />
+                @if ($worklog->job->is_open)
+                    <a href="{{ route('worklogs.restart', [$worklog->id, ]) }}" class="btn btn-default">diese Arbeit wiederaufnehmen</a><br />
+                @endif
 				</li>
 			@endforeach
 			</ul>

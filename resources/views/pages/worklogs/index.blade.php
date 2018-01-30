@@ -80,7 +80,7 @@
 				@endif
 					{{ $worklog->begin_at->formatLocalized('%A %d.%m.%Y') }}, {{ $worklog->begin_at->format('H:i') }} bis {{ $worklog->end_at->format('H:i') }} ({{ $worklog->begin_at->diffForHumans($worklog->end_at, true) }})<br />
 					Status: @if ($worklog->is_exported) <span class="text-success">exportiert</span> @else <span class="text-danger">nicht exportiert</span> @endif <br />
-					<a href="{{ url('worklogs/' . $worklog->id . '/edit') }}">bearbeiten</a><br />
+					<a href="{{ url('worklogs/' . $worklog->id . '/edit') }}" class="btn btn-default">bearbeiten</a><br />
 				</li>
 			@endforeach
 		@endforeach

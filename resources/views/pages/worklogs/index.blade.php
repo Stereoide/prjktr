@@ -84,12 +84,12 @@
 				</li>
 			@endforeach
 		@endforeach
-			</div>
-			<div class="panel-footer">
-				<a href="{{ route('worklogs.export') }}" class="btn btn-default">Exportieren</a>
-				<a href="{{ route('index') }}" class="btn btn-default">Zurück</a>
-			</div>
-		</div>
+            </ul>
+        </div>
+        <div class="panel-footer">
+            <a href="{{ route('worklogs.export') }}" class="btn btn-default">Exportieren</a>
+            <a href="{{ route('index') }}" class="btn btn-default">Zurück</a>
+        </div>
 	</div>
 </div>
 @endsection

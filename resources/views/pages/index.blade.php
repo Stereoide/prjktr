@@ -166,7 +166,7 @@
 
                 @if (!$worklog->is_exported)
                     <a href="{{ route('worklogs.edit', [$worklog->id, ]) }}" class="btn btn-default">bearbeiten</a>
-                @endif;
+                @endif
                 @if ($worklog->job->is_open && (is_null($activeWorklog) || $activeWorklog->job_id != $worklog->job_id))
                     <a href="{{ route('worklogs.restart', [$worklog->id, ]) }}" class="btn btn-default">diese Arbeit wiederaufnehmen</a><br />
                 @endif

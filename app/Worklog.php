@@ -46,7 +46,7 @@ class Worklog extends Model
 
     public function scopeForUser($query)
     {
-        return $query->where('user_id', Auth::id());
+        return $query->where('worklogs.user_id', Auth::id());
     }
 
     public function scopeActive($query)

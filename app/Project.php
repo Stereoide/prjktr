@@ -38,7 +38,7 @@ class Project extends Model
 
     public function scopeForUser($query)
     {
-        return $query->where('user_id', Auth::id());
+        return $query->where('projects.user_id', Auth::id());
     }
 
     public function scopeOrdered($query)

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Worklog;
+use Illuminate\Support\Facades\Auth;
 
 class Job extends Model
 {

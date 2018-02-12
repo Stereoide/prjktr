@@ -22,6 +22,7 @@ class Job extends Model
         'activity_id',
         'description',
         'status',
+        'user_id',
     ];
 
     /**
@@ -53,6 +54,11 @@ class Job extends Model
     public function worklogs()
     {
         return $this->hasMany('App\Worklog');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 
     /* Accessors */

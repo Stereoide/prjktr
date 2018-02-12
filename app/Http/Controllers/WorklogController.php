@@ -58,7 +58,7 @@ class WorklogController extends Controller
 
         if ('all' != $worklogValidity) {
             $worklogs = $worklogs->reject(function ($worklog) use ($worklogValidity) {
-                $isValid = !empty($worklog->job->project->np_id) && !empty($worklog->job->subproject->np_id);
+                $isValid = !empty($worklog->user->np_id) && !empty($worklog->job->project->np_id) && !empty($worklog->job->subproject->np_id);
                 $needsRejection = (('valid' == $worklogValidity && !$isValid) || ('invalid' == $worklogValidity && $isValid));
                 return $needsRejection;
             });
@@ -161,7 +161,7 @@ class WorklogController extends Controller
         /* Remove invalid worklogs */
 
         $worklogs = $worklogs->reject(function ($worklog, $key) {
-            return (empty($worklog->job->project->np_id) || empty($worklog->job->subproject->np_id));
+            return (empty($worklog->user->np_id) || empty($worklog->job->project->np_id) || empty($worklog->job->subproject->np_id));
         });
 
         /* Mark worklogs as exported */

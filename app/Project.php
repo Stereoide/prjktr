@@ -18,6 +18,7 @@ class Project extends Model
     protected $fillable = [
         'np_id',
         'name',
+        'user_id',
     ];
 
     /**
@@ -32,6 +33,11 @@ class Project extends Model
     public function subprojects()
     {
         return $this->hasMany('App\Subproject')->ordered();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 
     /* Scopes */

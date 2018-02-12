@@ -24,6 +24,7 @@ class Worklog extends Model
         'created',
         'is_exported',
         'exported_at',
+        'user_id',
     ];
 
     /**
@@ -40,6 +41,11 @@ class Worklog extends Model
     public function job()
     {
         return $this->belongsTo('App\Job');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 
     /* Scopes */
@@ -160,7 +166,7 @@ class Worklog extends Model
             return;
         }
 
-        $employeeId = 12;
+        $employeeId = $this->user->np_id;
         $employeeFunctionId = 5;
         $costPerQuarterHour = 20;
 

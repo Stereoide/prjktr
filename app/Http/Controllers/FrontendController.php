@@ -35,15 +35,15 @@ class FrontendController extends Controller
 
         /* Fetch currently active worklog */
 
-        $activeWorklog = Worklog::active()->first();
+        $activeWorklog = Worklog::forUser()->active()->first();
 
         /* Fetch finished worklogs */
 
-        $worklogs = Worklog::finished()->today()->get();
+        $worklogs = Worklog::forUser()->finished()->today()->get();
 
         /* Fetch available jobs */
 
-        $jobs = Job::open()->ordered()->get();
+        $jobs = Job::forUser()->open()->ordered()->get();
 
         /* Order jobs alphabetically while pretending month names correspond to their numeric index */
 

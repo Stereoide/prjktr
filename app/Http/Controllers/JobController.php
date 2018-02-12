@@ -8,6 +8,7 @@ use App\Project;
 use App\Subproject;
 use App\Activity;
 use App\Worklog;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -45,7 +46,7 @@ class JobController extends Controller
 
         /* Fetch projects, subprojects and activities */
 
-        $projects = Project::ordered()->get();
+        $projects = Project::forUser()->ordered()->get();
         $activities = Activity::ordered()->get();
 
         /* Show view */
@@ -77,13 +78,14 @@ class JobController extends Controller
         /* Try to fetch matching project */
 
         if (!empty($projectName)) {
-            $project = Project::where('name', 'LIKE', $projectName)->first();
+            $project = Project::forUser()->where('name', 'LIKE', $projectName)->first();
 
             if (empty($project)) {
                 /* Create project */
 
                 $project = new Project;
                 $project->name = $projectName;
+                $project->user_id = Auth::id();
                 $project->save();
             }
 
@@ -109,7 +111,7 @@ class JobController extends Controller
 
         /* Try to fetch matching job */
 
-        $job = Job::where('project_id', $projectId)->where('subproject_id', $subprojectId)->where('activity_id', $activityId)->where('description', $description)->first();
+        $job = Job::forUser()->where('project_id', $projectId)->where('subproject_id', $subprojectId)->where('activity_id', $activityId)->where('description', $description)->first();
 
         if (empty($job)) {
             /* Create job */
@@ -120,6 +122,7 @@ class JobController extends Controller
             $job->activity_id = $activityId;
             $job->description = $description;
             $job->status = 'open';
+            $job->user_id = Auth::id();
             $job->save();
         }
 
@@ -181,7 +184,7 @@ class JobController extends Controller
     {
         /* Close job */
 
-        $job = Job::find($jobId);
+        $job = Job::forUser()->find($jobId);
         $job->status = 'closed';
         $job->save();
 

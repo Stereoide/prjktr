@@ -42,7 +42,7 @@ class WorklogController extends Controller
 
         /* Fetch finished worklogs */
 
-        $worklogs = Worklog::with('job.project', 'job.subproject')->finished()->where('begin_at', '>=', $dateFrom . ' 00:00:00')->where('end_at', '<=', $dateTo . ' 23:59:59');
+        $worklogs = Worklog::with('job.project', 'job.subproject')->forUser()->finished()->where('begin_at', '>=', $dateFrom . ' 00:00:00')->where('end_at', '<=', $dateTo . ' 23:59:59');
 
         /* Respect desired export status */
 
@@ -156,7 +156,7 @@ class WorklogController extends Controller
 
         /* Fetch finished worklogs */
 
-        $worklogs = Worklog::with('job.project', 'job.subproject')->finished()->isNotExported()->get();
+        $worklogs = Worklog::with('job.project', 'job.subproject')->forUser()->finished()->isNotExported()->get();
 
         /* Remove invalid worklogs */
 
@@ -217,13 +217,13 @@ class WorklogController extends Controller
     {
         /* Fetch worklog */
 
-        $worklog = Worklog::findOrFail($id);
+        $worklog = Worklog::forUser()->findOrFail($id);
 
         /* Fetch previous and next worklog if possible */
 
-        $previousWorklog = Worklog::find($id - 1);
+        $previousWorklog = Worklog::forUser()->find($id - 1);
 
-        $nextWorklog = Worklog::find($id + 1);
+        $nextWorklog = Worklog::forUser()->find($id + 1);
 
         /* Show view */
 
@@ -248,7 +248,7 @@ class WorklogController extends Controller
 
         /* Fetch and update model */
 
-        $worklog = Worklog::findOrFail($id);
+        $worklog = Worklog::forUser()->findOrFail($id);
         $worklog->begin_at = $beginAt;
         $worklog->end_at = $endAt;
         $worklog->notes = $input['notes'];
@@ -274,7 +274,7 @@ class WorklogController extends Controller
     {
         /* Fetch and finish a currently unfinished worklog first */
 
-        $worklog = Worklog::active()->first();
+        $worklog = Worklog::forUser()->active()->first();
 
         if (!is_null($worklog)) {
             $worklog->finish();
@@ -295,7 +295,7 @@ class WorklogController extends Controller
 
         /* Fetch and finish a currently unfinished worklog first */
 
-        $worklog = Worklog::active()->first();
+        $worklog = Worklog::forUser()->active()->first();
 
         if (!is_null($worklog)) {
             $worklog->finish();

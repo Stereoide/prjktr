@@ -70,7 +70,7 @@ class ProjectController extends Controller
     {
         /* Fetch project to edit */
 
-        $project = Project::findOrFail($id);
+        $project = Project::forUser()->findOrFail($id);
 
         /* Show view */
 
@@ -88,7 +88,7 @@ class ProjectController extends Controller
     {
         /* Fetch project */
 
-        $project = Project::findOrFail($id);
+        $project = Project::forUser()->findOrFail($id);
 
         /* Update project */
 

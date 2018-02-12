@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class Worklog extends Model
 {
@@ -42,6 +43,11 @@ class Worklog extends Model
     }
 
     /* Scopes */
+
+    public function scopeForUser($query)
+    {
+        return $query->where('user_id', Auth::id());
+    }
 
     public function scopeActive($query)
     {
@@ -92,12 +98,12 @@ class Worklog extends Model
 
     public function scopeIncomplete($query)
     {
-        return $query->whereHas('job', function($query) {
+        return $query->whereHas('job', function ($query) {
             return $query
-                ->whereHas('project', function($query) {
+                ->whereHas('project', function ($query) {
                     return $query->whereNull('np_id');
                 })
-                ->orWhereHas('subproject', function($query) {
+                ->orWhereHas('subproject', function ($query) {
                     return $query->whereNull('np_id');
                 });
         });
@@ -125,6 +131,10 @@ class Worklog extends Model
         /* Sanitize timestamp */
 
         $datetime = (empty($date) ? date('Y-m-d') : $date) . ' ' . (empty($timeBegin) ? date('H:i') : $timeBegin);
+
+        /* Set user id */
+
+        $this->user_id = Auth::id();
 
         /* Start this worklog */
 

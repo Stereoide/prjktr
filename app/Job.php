@@ -67,7 +67,12 @@ class Job extends Model
     }
 
     /* Scopes */
-    
+
+    public function scopeForUser($query)
+    {
+        return $query->where('user_id', Auth::id());
+    }
+
     public function scopeOpen($query) {
     	return $query->where('jobs.status', 'open');
     }
